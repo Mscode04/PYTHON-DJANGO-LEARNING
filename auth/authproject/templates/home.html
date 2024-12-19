@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% for msg in messages %}
+{{ msg }}
+{% endfor %}
+{% if user.authenticated %}
+{{ user.username }}
+<a href="{% url 'logout' %}">Logout</a>
+{% endif %}
+<h1>Hello</h1>
+</body>
+</html>
