@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+ <table class="border-1 p-4">
+     <thead>
+     <tr>
+         <th>id</th>
+         <th>Name</th>
+         <th>Price</th>
+         <th>Action</th>
+     </tr>
+     </thead>
+
+     <tbody>
+     {% for book in page %}
+     <tr>
+         <td>{{forloop.counter}}</td>
+         <td>{{book.title}}</td>
+         <td>{{book.price}}</td>
+         <td>
+             <a href="{% url 'details' book.id %}"><button type="submit" class="btn btn-info">Details</button></a>
+             <a href="{% url 'update'  book.id %}"><button type="submit" class="btn btn-success">Update</button></a>
+             <a href="{% url 'delete'  book.id %}"><button type="submit" class="btn btn-danger">Delete</button></a>
+         </td>
+     </tr>
+    {% endfor %}
+     </tbody>
+ </table>
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+      {% if page.has_previous %}
+    <li class="page-item">
+      <a class="page-link" href="?page={{ page.previous_page_number }}" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+{% endif %}
+
+      {% for num in page.paginator.page_range %}
+    <li class="page-item {% if page.number == num %}activate{% endif %}">
+        <a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+
+      {% endfor %}
+      {% if page.has_next %}
+    <li class="page-item">
+      <a class="page-link" href="?page={{ page.next_page_number }}" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+      {% endif %}
+  </ul>
+</nav>
+{% endblock %}

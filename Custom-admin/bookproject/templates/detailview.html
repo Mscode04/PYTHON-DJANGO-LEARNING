@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<h1>Book Details</h1>
+
+<br>
+
+<div class="card" style="width: 18rem;">
+  {% if book.image %}
+  <img src="{{ book.image.url }}" class="card-img-top" alt="...">
+{% else %}
+  <img src="{% static 'path/to/default/image.jpg' %}" class="card-img-top" alt="No image available">
+{% endif %}
+  <div class="card-body">
+    <h5 class="card-title">{{book.title}} </h5>
+    <p class="card-text">{{book.auther}} </p>
+    <a href="#" class="btn btn-primary">{{book.price}}</a>
+  </div>
+</div>
+{% endblock %}
