@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/update-recipe.css' %}">
+    <div class="update-container">
+        <h1>Update Recipe: {{ recipe.Name }}</h1>
+        
+        <!-- Form to update recipe -->
+        <form method="POST" enctype="multipart/form-data" class="update-form">
+            {% csrf_token %}
+            
+            <div class="update-form-group">
+                <label for="Name">Recipe Name:</label>
+                <input type="text" name="Name" id="Name" value="{{ recipe.Name }}" class="form-control" required>
+            </div>
+            
+            <div class="update-form-group">
+                <label for="Prep_time">Preparation Time:</label>
+                <input type="text" name="Prep_time" id="Prep_time" value="{{ recipe.Prep_time }}" class="form-control" required>
+            </div>
+
+            <div class="update-form-group">
+                <label for="Difficulty">Difficulty:</label>
+                <input type="text" name="Difficulty" id="Difficulty" value="{{ recipe.Difficulty }}" class="form-control" required>
+            </div>
+
+            <div class="update-form-group">
+                <label for="Vegetarian">Vegetarian:</label>
+                <input type="checkbox" name="Vegetarian" id="Vegetarian" {% if recipe.Vegetarian %}checked{% endif %}>
+            </div>
+
+            <div class="update-form-group">
+                <label for="Description">Description:</label>
+                <textarea name="Description" id="Description" class="form-control" required>{{ recipe.Description }}</textarea>
+            </div>
+
+            <div class="update-form-group">
+                <label for="Recipe_img">Recipe Image:</label>
+                <input type="file" name="Recipe_img" id="Recipe_img" class="form-control">
+                {% if recipe.Recipe_img %}
+                    <p class="update-recipe-img"><img src="{{ recipe.Recipe_img }}" alt="{{ recipe.Name }}" width="100"></p>
+                {% endif %}
+            </div>
+
+            <button type="submit" class="update-btn">Update Recipe</button>
+        </form>
+
+        {% if messages %}
+            <div class="update-alert mt-3">
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

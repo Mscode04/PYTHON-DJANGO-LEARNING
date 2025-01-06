@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">User Registration</h1>
+        <form method="post" class="needs-validation" novalidate>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="form-group">
+                <label for="id_country">Country</label>
+                <select name="country" id="id_country" class="form-control" required>
+                    <option value="">Select Country</option>
+                    {% for country in countries %}
+                        <option value="{{ country.id }}">{{ country.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- State select box - initially hidden -->
+            <div class="form-group" id="state-select-container" style="display:none;">
+                <label for="id_state">State</label>
+                <select name="state" id="id_state" class="form-control" required>
+                    <option value="">Select State</option>
+                </select>
+            </div>
+
+            <!-- District select box - initially hidden -->
+            <div class="form-group" id="district-select-container" style="display:none;">
+                <label for="id_district">District</label>
+                <select name="district" id="id_district" class="form-control" required>
+                    <option value="">Select District</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">Register</button>
+        </form>
+    </div>
+
+    <script type="text/javascript">
+        // Fetch States based on selected Country
+        $('#id_country').change(function() {
+            var countryId = $(this).val();
+            
+            // Hide state and district dropdowns until a country is selected
+            $('#state-select-container').hide();
+            $('#district-select-container').hide();
+            
+            if (countryId) {
+                $.ajax({
+                    url: '/api/states/',  // Ensure the correct API endpoint
+                    data: { 'country_id': countryId },
+                    success: function(data) {
+                        var states = '<option value="">Select State</option>';
+                        $.each(data, function(i, state) {
+                            states += '<option value="' + state.id + '">' + state.name + '</option>';
+                        });
+                        $('#id_state').html(states);
+                        $('#state-select-container').show(); // Show the state dropdown
+                    }
+                });
+            }
+        });
+
+        // Fetch Districts based on selected State
+        $('#id_state').change(function() {
+            var stateId = $(this).val();
+            
+            // Hide district dropdown until a state is selected
+            $('#district-select-container').hide();
+            
+            if (stateId) {
+                $.ajax({
+                    url: '/api/districts/',  // Ensure the correct API endpoint
+                    data: { 'state_id': stateId },
+                    success: function(data) {
+                        var districts = '<option value="">Select District</option>';
+                        $.each(data, function(i, district) {
+                            districts += '<option value="' + district.id + '">' + district.name + '</option>';
+                        });
+                        $('#id_district').html(districts);
+                        $('#district-select-container').show(); // Show the district dropdown
+                    }
+                });
+            }
+        });
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

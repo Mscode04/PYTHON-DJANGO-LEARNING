@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<head>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5/5hb7xg5LtFBbXjD6R4rR6G8ktlcddTwEAxE1s4" crossorigin="anonymous">
+  <link rel="stylesheet" href="{% static 'css/index.css' %}">
+</head>
+
+
+      
+<div class="inde-recipe-container-banner">
+  <img src="{% static 'img/Designer.jpeg' %}" alt="Designer" class="inde-recipe-container-img-banner">
+</div>
+
+
+
+
+{% if data %}
+<div class="container inde-recipe-container">
+  <div class="inde-recipe-grid">
+      {% for recipe in data %}
+      <div class="inde-card">
+          <img src="{{ recipe.Recipe_img }}" class="card-img-top" alt="{{ recipe.Name }}">
+          <div class="card-body">
+              <h5 class="text-center">{{ recipe.Name }}</h5>
+              <p class="text-center">
+                  {% if recipe.Difficulty == 1 %}
+                  <span class="badge bg-success">Easy</span>
+                  {% elif recipe.Difficulty == 2 %}
+                  <span class="badge bg-warning">Medium</span>
+                  {% else %}
+                  <span class="badge bg-danger">Hard</span>
+                  {% endif %}
+              </p>
+              <p class="text-center">
+                  {% if recipe.Vegetarian %}
+                  <span class="badge bg-success">Vegetarian</span>
+                  {% else %}
+                  <span class="badge bg-danger">Non-Vegetarian</span>
+                  {% endif %}
+              </p>
+              <div class="d-grid gap-2">
+                  <a href="recipe_fetch/{{ recipe.id }}" class="btn inde-btn-primary">View Details</a>
+                  <a href="update_recipe/{{ recipe.id }}" class="btn inde-btn-success">Update</a>
+                  <button type="button" class="btn inde-btn-danger" onclick="confirmDeletion('{{ recipe.id }}', '{{ recipe.Name }}')">
+                      Delete
+                  </button>
+              </div>
+          </div>
+      </div>
+      {% endfor %}
+  </div>
+
+
+
+{% elif recipes %}
+<div class="container inde-recipe-container">
+  <div class="inde-recipe-grid">
+      {% for recipe in recipes %}
+      <div class="inde-card">
+          <img src="{{ recipe.Recipe_img.url }}" class="card-img-top" alt="{{ recipe.Name }}">
+          <div class="card-body">
+              <h5 class="text-center">{{ recipe.Name }}</h5>
+              <p class="text-center">
+                  {% if recipe.Difficulty == 1 %}
+                  <span class="badge bg-success">Easy</span>
+                  {% elif recipe.Difficulty == 2 %}
+                  <span class="badge bg-warning">Medium</span>
+                  {% else %}
+                  <span class="badge bg-danger">Hard</span>
+                  {% endif %}
+              </p>
+              <p class="text-center">
+                  {% if recipe.Vegetarian %}
+                  <span class="badge bg-success">Vegetarian</span>
+                  {% else %}
+                  <span class="badge bg-danger">Non-Vegetarian</span>
+                  {% endif %}
+              </p>
+              <div class="d-grid gap-2">
+                  <a href="recipe_fetch/{{ recipe.id }}/" class="btn inde-btn-primary">View Details</a>
+                  <a href="update_recipe/{{ recipe.id }}/" class="btn inde-btn-success">Update</a>
+                  <button type="button" class="btn inde-btn-danger" onclick="confirmDeletion('{{ recipe.id }}', '{{ recipe.Name }}')">
+                      Delete
+                  </button>
+              </div>
+          </div>
+      </div>
+      {% endfor %}
+  </div>
+</div>
+
+        <!-- Pagination -->
+        <div class="d-flex justify-content-center inde-pagination">
+          <nav class="inde-pagination-nav">
+              <ul class="inde-pagination-list">
+                  {% for pg in recipes.paginator.page_range %}
+                      <li class="inde-pagination-item {% if recipes.number == pg %}active{% endif %}">
+                          <a class="inde-pagination-link" href="?page={{ pg }}">{{ pg }}</a>
+                      </li>
+                  {% endfor %}
+              </ul>
+          </nav>
+      </div>
+      
+    {% else %}
+        <p class="text-center mt-5">No recipes found. Try a different search!</p>
+   
+</div>
+{% endif %}
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-7qwPT2Wz8/t51kA5FflqDvh0vl9Z/zhk6vDJ7ghIlL3h61hvIsArf2Nx9K0RczD6" crossorigin="anonymous"></script>
+<script>
+  function confirmDeletion(recipeId, recipeName) {
+      const confirmation = confirm(`Are you sure you want to delete the recipe "${recipeName}"?`);
+      if (confirmation) {
+          window.location.href = `/recipe_delete/${recipeId}`;
+      }
+  }
+</script>
+
+{% endblock %}

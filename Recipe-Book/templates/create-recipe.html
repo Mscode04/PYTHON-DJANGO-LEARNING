@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- Include the CSS -->
+<link rel="stylesheet" href="{% static 'css/create-recipe.css' %}">
+
+<div class="cre-container">
+    <h2 class="cre-header">CREATE NEW RECIPES</h2>
+
+    <!-- Display Messages -->
+    {% if messages %}
+        <div class="cre-alert-container">
+            {% for message in messages %}
+                <div class="cre-alert cre-alert-{{ message.tags }}" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <!-- Recipe Form -->
+    <form class="cre-form" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="cre-form-fields">
+            {{ form.as_p }}
+        </div>
+        <button type="submit" class="cre-btn-submit">Submit</button>
+    </form>
+</div>
+{% endblock %}

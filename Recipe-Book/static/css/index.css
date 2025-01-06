@@ -1,0 +1,415 @@
+/* index.css */
+
+/* General styles for the body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+}
+
+/* Navbar styling */
+.inde-navbar {
+    background-color: #ffffff;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.inde-navbar a.nav-link {
+    color: #555555;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-right: 15px;
+    transition: color 0.3s;
+}
+
+.inde-navbar a.nav-link:hover {
+    color: #007bff;
+}
+
+/* Recipe card container */
+.inde-recipe-container {
+    padding: 40px 0;
+}
+
+.inde-card {
+    background-color: #ffffff;
+    border: none;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.inde-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.inde-card img {
+    height: 300px;
+    width: 100%;
+    object-fit: cover;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.inde-card .card-body {
+    padding: 20px;
+}
+
+.inde-card h5 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.inde-card .badge {
+    font-size: 14px;
+    padding: 5px 10px;
+    border-radius: 12px;
+}
+
+.inde-card .badge.bg-success {
+    background-color: #28a745;
+    color: #ffffff;
+}
+
+.inde-card .badge.bg-warning {
+    background-color: #ffc107;
+    color: #ffffff;
+}
+
+.inde-card .badge.bg-danger {
+    background-color: #dc3545;
+    color: #ffffff;
+}
+a{
+    text-decoration: none;
+}
+.inde-btn-primary, .inde-btn-success {
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.inde-btn-primary {
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+}
+
+.inde-btn-primary:hover {
+    background-color: #0056b3;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+.inde-btn-danger:hover {
+    background-color: #9c2d2d;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.inde-btn-success {
+    background-color: #28a745;
+    color: #ffffff;
+    border: none;
+}
+.inde-btn-danger {
+    background-color: #ff3e3e;
+    color: #ffffff;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.inde-btn-success:hover {
+    background-color: #1e7e34;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Grid layout for recipes */
+.inde-recipe-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.inde-recipe-grid .inde-card {
+    width: 30%; /* Ensures 3 cards per row */
+}
+
+/* Pagination styling */
+.inde-pagination .page-item.active .page-link {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: #ffffff;
+}
+
+.inde-pagination .page-link {
+    color: #007bff;
+    border: 1px solid #dee2e6;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.inde-pagination .page-link:hover {
+    background-color: #f8f9fa;
+    color: #0056b3;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+    .inde-recipe-grid .inde-card {
+        width: 45%;
+    }
+}
+
+@media (max-width: 576px) {
+    .inde-recipe-grid .inde-card {
+        width: 100%;
+    }
+}
+/* General Navbar Styles */
+.inde-navbar {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 10px 20px;
+    font-family: Arial, sans-serif;
+}
+
+.inde-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.inde-logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    text-decoration: none;
+}
+
+.inde-toggler {
+    display: none;
+    background: none;
+    border: none;
+}
+
+.inde-toggler-icon {
+    width: 25px;
+    height: 3px;
+    background-color: #333;
+    display: block;
+    margin: 5px 0;
+}
+
+/* Navbar Collapse */
+.inde-collapse {
+    display: flex;
+    align-items: center;
+}
+
+.inde-nav {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.inde-nav-item {
+    margin: 0 10px;
+}
+
+.inde-nav-link {
+    text-decoration: none;
+    color: #555;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.inde-nav-link:hover,
+.inde-nav-link.active {
+    background-color: #007bff;
+    color: #fff;
+}
+
+/* Search Form */
+.inde-search-form {
+    display: flex;
+    align-items: center;
+}
+
+.inde-search-input {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+    font-size: 14px;
+}
+
+.inde-search-btn {
+    padding: 5px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #28a745;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.inde-search-btn:hover {
+    background-color: #218838;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .inde-toggler {
+        display: block;
+    }
+
+    .inde-collapse {
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .inde-collapse.show {
+        display: flex;
+    }
+
+    .inde-nav {
+        flex-direction: column;
+    }
+
+    .inde-nav-item {
+        margin: 5px 0;
+    }
+}
+/* Pagination Wrapper */
+.inde-pagination {
+    margin-top: 20px;
+}
+
+/* Pagination Navigation */
+.inde-pagination-nav {
+    display: flex;
+    margin-bottom: 50px;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Pagination List */
+.inde-pagination-list {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+}
+
+/* Pagination Items */
+.inde-pagination-item {
+    margin: 0 5px;
+}
+
+.inde-pagination-item.active .inde-pagination-link {
+    background-color: #007bff;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+/* Pagination Links */
+.inde-pagination-link {
+    text-decoration: none;
+    color: #555;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.inde-pagination-link:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .inde-pagination-list {
+        flex-wrap: wrap;
+    }
+
+    .inde-pagination-item {
+        margin: 3px;
+    }
+}
+
+
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1050;
+}
+
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 500px;
+    width: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1060;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.modal .btn-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+
+.inde-recipe-container-banner {
+    margin: 40px;
+    
+    display: flex;
+    justify-content: center; 
+    align-items: center;      
+    height: 100%;            
+}
+
+.inde-recipe-container-img-banner {
+    max-width: 100%;  
+    border-radius: 20px;
+    height: auto;     
+}
+
+
+

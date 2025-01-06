@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/fetch-recipe.css' %}">
+    <div class="fetch-container">
+        {% if error %}
+            <p class="fetch-error">{{ error }}</p>
+        {% elif recipes %}
+            <!-- Recipe Card -->
+            <div class="fetch-recipe-card">
+                <!-- Image Section -->
+                <div class="fetch-recipe-img-container">
+                    {% if recipes.Recipe_img %}
+                        <img src="{{ recipes.Recipe_img }}" alt="{{ recipes.Name }}" class="fetch-recipe-img">
+                    {% else %}
+                        <p class="fetch-no-image">No image available</p>
+                    {% endif %}
+                </div>
+
+                <!-- Recipe Details Section -->
+                <div class="fetch-recipe-details">
+                    <h1>{{ recipes.Name }}</h1>
+                    <!-- Recipe Info -->
+                    <div class="fetch-recipe-info">
+                        <p><strong>Preparation Time:</strong> {{ recipes.Prep_time }}</p>
+                        <p><strong>Difficulty:</strong> {{ recipes.Difficulty }}</p>
+                        <p><strong>Description:</strong> {{ recipes.Description }}</p>
+                        <p><strong>Vegetarian:</strong> {% if recipes.Vegetarian %}Yes{% else %}No{% endif %}</p>
+                    </div>
+
+                    <!-- Ingredients List -->
+                    <div class="fetch-recipe-ingredients">
+                        <h3>Ingredients:</h3>
+                        <ul>
+                            {% for ingredient in ingredients %}
+                            <li>{{ ingredient }}</li>
+                        {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <p class="fetch-no-image">No recipe details available.</p>
+        {% endif %}
+    </div>
+{% endblock %}

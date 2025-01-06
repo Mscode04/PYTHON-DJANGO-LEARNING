@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5+5hb7x1V1RZ3lj3tx5WfoiRd5R9Dej4p2zkmf4T" crossorigin="anonymous">
+    <!-- Bootstrap CSS -->
+    <link 
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
+        rel="stylesheet" 
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLfz1VNX8a4Bw9g2JXcxShx6fyKQ1iXTW1J8BsGoJo" 
+        crossorigin="anonymous">
+
+    <!-- Font Awesome -->
+    <link 
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" 
+        rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'css/index.css' %}">
+</head>
+<body>
+    <nav class="inde-navbar">
+        <div class="inde-container">
+            <a class="inde-logo" href="#">Recipe Book</a>
+            <button class="inde-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#inde-navbarNav" aria-controls="inde-navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="inde-toggler-icon"></span>
+            </button>
+            <div class="inde-collapse" id="inde-navbarNav">
+                <ul class="inde-nav">
+                    <li class="inde-nav-item">
+                        <a class="inde-nav-link active" href="/">Home</a>
+                    </li>
+                    <li class="inde-nav-item">
+                        <a class="inde-nav-link" href="/create_recipe/">Create</a>
+                    </li>
+                </ul>
+                <form class="inde-search-form" method="post">
+                    {% csrf_token %}
+                    <input class="inde-search-input" type="search" name="search" placeholder="Search recipes" aria-label="Search">
+                    <button class="inde-search-btn" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+      </nav>
+      
+
+    {% block content %}
+    {% endblock %}
+
+    <div class="inde-recipe-container-banner">
+        <img src="{% static 'img/banner-2.jpeg' %}" alt="Designer" class="inde-recipe-container-img-banner">
+      </div>
+    <script 
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
+        integrity="sha384-MrcW6ZMFY1zcLA8N1+NtUVFOsA7MsXsPIUyJoMp4YLEUNSfAP+JcXn/tWtIaxVXM" 
+        crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-7qwPT2Wz8/t51kA5FflqDvh0vl9Z/zhk6vDJ7ghIlL3h61hvIsArf2Nx9K0RczD6" crossorigin="anonymous"></script>
+</body>
+</html>
